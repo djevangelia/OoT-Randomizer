@@ -43,3 +43,5 @@ Message_CloseTextbox = 0x800d6218;
 sSetupDL = 0x800f7d50;
 OVL_EnOkarinaTag_Action2 = 0x80a872d0;
 OVL_EnOkarinaTag_Action1 = 0x80a87088;
+Player_InCsMode = 0x8007943c;
+Environment_PlayStormNatureAmbience = 0x80063474;

@@ -3,6 +3,7 @@
 #include "trade_quests.h"
 #include "bg_gate_shutter.h"
 #include "save.h"
+#include "debug.h"
 
 #define rupee_cap ((uint16_t*)0x800F8CEC)
 volatile uint8_t MAX_RUPEES = 0;
@@ -200,6 +201,14 @@ void give_fairy_ocarina(z64_file_t* save, int16_t arg1, int16_t arg2) {
 
 void give_quest_item(z64_file_t* save, int16_t quest_bit, int16_t arg2) {
     save->quest_items |= 1 << quest_bit;
+
+    // If have Forest, Fire, Water medallions - set flag to signal to give Nocturne
+    // Also set "Bongo escaped well" flag
+    if((save->quest_items & (1 << 0) && save->quest_items & (1 << 1) && save->quest_items & (1 << 2)) &&
+     !GET_EVENTCHKINF(0xAA) && !GET_EVENTCHKINF(0x54)) {
+        giveNocturne = 1;
+        SET_EVENTCHKINF(0xAA);
+    }
 }
 
 void ice_trap_effect(z64_file_t* save, int16_t arg1, int16_t arg2) {

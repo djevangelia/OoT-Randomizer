@@ -1111,6 +1111,14 @@ typedef struct {
                                           /* 0x00A4 */
 } z64_ctxt_t;
 
+typedef struct EnvironmentContext {
+    /* 0x00 */ char unk_00[0xDF];
+    /* 0xDF */ uint8_t lightningState;
+    /* 0xE0 */ char unk_01[0x0E];
+    /* 0xEE */ uint8_t precipitation[5];
+    /* 0xF3 */ char unk_02[0x09];
+} EnvironmentContext; // size = 0xFC
+
 typedef struct {
   /* file loading params */
   uint32_t      vrom_addr;
@@ -1462,7 +1470,9 @@ typedef struct {
   }                restriction_flags;      /* 0x10752 */
   char             unk_14_[0x0002];        /* 0x1075E */
   z64_pause_ctxt_t pause_ctxt;             /* 0x10760 */
-  char             unk_15_[0x0D90];        /* 0x10A14 */
+  char             unk_15_[0x0010];        /* 0x10A14 */
+  EnvironmentContext envCtx;               /* 0x10A24 */
+  char             unk_15b_[0x0C84];       /* 0x10B20 */
   z64_obj_ctxt_t   obj_ctxt;               /* 0x117A4 */
   int8_t           room_index;             /* 0x11CBC */
   char             unk_16_[0x000B];        /* 0x11CBD */

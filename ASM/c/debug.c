@@ -368,12 +368,38 @@ bool get_flag(uint8_t flagtype, uint8_t flag) {
     }
 }
 
+bool giveNocturne;
+extern int Player_InCsMode(z64_game_t* play);
+extern void Environment_PlayStormNatureAmbience(z64_game_t* play);
+
 void debug_utilities(z64_disp_buf_t* db)
 {
     // Press L to levitate
     // Shoutouts to glankk
     if (z64_game.common.input[0].raw.pad.du || z64_game.common.input[0].raw.pad.l) {
         z64_link.common.vel_1.y = 6.34375f;
+        give_quest_item(&z64_file, 0, 0);   // Forest
+        give_quest_item(&z64_file, 1, 0);   // Fire
+        give_quest_item(&z64_file, 2, 0);   // Water
+    }
+
+    // If Nocturne time + in Kakariko
+    if(giveNocturne && z64_game.scene_index == 0x52) {
+        text_print_size(db, "nocturne", 20, 20, 16, 16);    // Just debug message that it's available
+        // If adult and not blocking cutscene mode
+        if( z64_file.link_age == 0 && !Player_InCsMode(&z64_game)) {
+            if(GET_EVENTCHKINF(0x54)) { // Extra frame delay because it can get given early otherwise
+                // Give item and set weather conditions like post Nocturne
+                Environment_PlayStormNatureAmbience(&z64_game);
+                z64_game.envCtx.lightningState = 1;
+                z64_game.envCtx.precipitation[0] = 30;
+                z64_GiveItem(&z64_game, Z64_ITEM_NOCTURNE);
+                giveNocturne = 0;
+            }
+            else {
+                SET_EVENTCHKINF(0x54);  // Set "received Nocturne" flag
+            }
+        }
     }
 
     draw_debug_menu(db);

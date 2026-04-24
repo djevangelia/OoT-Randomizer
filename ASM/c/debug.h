@@ -1,12 +1,14 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 
 #include "z64.h"
 #include "gfx.h"
 #include "text.h"
 #include "item_effects.h"
+
+extern bool giveNocturne;
 
 extern uint8_t SKIP_N64_LOGO;
 void Actor_SetColorFilter(z64_actor_t* actor, int16_t colorFlag, int16_t colorIntensityMax, int16_t bufFlag, int16_t duration);
