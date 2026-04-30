@@ -133,6 +133,7 @@ RANDO_CONTEXT:
 .include "en_dns.asm"
 .include "bg_gate_shutter.asm"
 .include "big_poe.asm"
+.include "player_ladder_cutscene.asm"
 .include "enbox_callloadobject.asm"
 .include "debug_newroom_removeice.asm"
 
