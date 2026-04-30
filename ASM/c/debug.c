@@ -2,6 +2,7 @@
 #include "objects.h"
 #include "item_effects.h"
 #include "actor.h"
+#include "debug_icetrap.h"
 
 extern uint16_t current_textbox_id;
 
@@ -376,6 +377,14 @@ void debug_utilities(z64_disp_buf_t* db)
         z64_link.common.vel_1.y = 6.34375f;
     }
 
+    if (z64_game.common.input[0].raw.pad.z && z64_game.common.input[0].raw.pad.l &&
+        z64_game.common.input[0].raw.pad.cu) {
+        drawIceTrapDebug ^= 1;
+    }
+    if(drawIceTrapDebug) {
+        IceTrapObjectDebugDraw(db);
+    }
+
     draw_debug_menu(db);
     draw_debug_numbers(db);
     draw_timeofday(db);
@@ -679,7 +688,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                     }
                     if (current_menu_indexes.sub_menu_index == 2) {
                         uint8_t nbActors = 0;
-                        z64_actor_t* actor = z64_game.actor_list[current_menu_indexes.actor_index].first;
+                        z64_actor_t* actor = z64_game.actorLists[current_menu_indexes.actor_index].head;
                         while (actor != NULL) {
                             nbActors++;
                             actor = actor->next;
@@ -992,7 +1001,7 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                     }
                     else {
                         uint8_t nbActors = 0;
-                        z64_actor_t* actor = z64_game.actor_list[current_menu_indexes.actor_index].first;
+                        z64_actor_t* actor = z64_game.actorLists[current_menu_indexes.actor_index].head;
                         uint8_t currentActorPage = current_menu_indexes.specific_actor_index / 10;
                         // Display actor list in 10 by 10 pages.
                         while (actor != NULL) {
