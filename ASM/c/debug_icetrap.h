@@ -7,10 +7,10 @@
 
 // Ice trap debug
 
-extern int16_t iceTraps;
-extern int16_t iceObjects;
-extern int16_t totalObj;
-extern bool    drawIceTrapDebug;
+extern uint8_t iceTraps;
+extern uint8_t iceObjects;
+extern uint8_t totalObj;
+extern uint8_t drawIceTrapDebug;
 
 void IceTrapObjectDebugDraw(z64_disp_buf_t* db);
 

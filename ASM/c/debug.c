@@ -373,14 +373,26 @@ void debug_utilities(z64_disp_buf_t* db)
 {
     // Press L to levitate
     // Shoutouts to glankk
-    if (z64_game.common.input[0].raw.pad.du || z64_game.common.input[0].raw.pad.l) {
+    if (z64_game.common.input[0].raw.pad.du) {
         z64_link.common.vel_1.y = 6.34375f;
     }
 
-    if (z64_game.common.input[0].raw.pad.z && z64_game.common.input[0].raw.pad.l &&
+    else if (z64_game.common.input[0].raw.pad.z && z64_game.common.input[0].raw.pad.l &&
         z64_game.common.input[0].raw.pad.cu) {
         drawIceTrapDebug ^= 1;
     }
+
+    // kill combination
+    else if (z64_game.common.input[0].raw.pad.dr && z64_game.common.input[0].raw.pad.a) {
+        z64_actor_t* actor;
+
+        actor = z64_game.actorLists[5].head; // = enemy list
+        while (actor != NULL) {
+            z64_ActorKill(actor);
+            actor = actor->next;
+        }
+    }
+
     if(drawIceTrapDebug) {
         IceTrapObjectDebugDraw(db);
     }

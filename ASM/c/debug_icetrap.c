@@ -2,15 +2,15 @@
 
 #define ARRAY_COUNT(arr) (int32_t)(sizeof(arr) / sizeof(arr[0]))
 
-int16_t iceTraps;
-int16_t iceObjects;
-int16_t totalObj;
-bool    drawIceTrapDebug;
+uint8_t iceTraps = 0;
+uint8_t iceObjects = 0;
+uint8_t totalObj = 0;
+uint8_t drawIceTrapDebug = 0;
 
 // Draw number of ice trap chests in room, number of OBJECT_FZ objects and slot, total loaded objects
 // and list of slots
 void IceTrapObjectDebugDraw(z64_disp_buf_t* db) {
-    int16_t i;
+    uint8_t i;
     colorRGBA8_t color = { 0xFF, 0xFF, 0xFF, 0xFF };
     colorRGBA8_t color_obj = { 0, 0, 0xaa, 0xFF };
     colorRGBA8_t color_empty = { 0xaa, 0xaa, 0xaa, 0xFF };
@@ -23,7 +23,7 @@ void IceTrapObjectDebugDraw(z64_disp_buf_t* db) {
             totalObj++;
             if(ABS((z64_game.obj_ctxt.objects[i].id)) == 0x114) {
                 iceObjects++;
-                draw_int(db, i, 30, 80, color_obj); // hopefully no more than one object_fz
+                draw_int(db, i, 20, 80, color_obj); // hopefully no more than one object_fz
                 draw_int(db, 2, displX, displY, color_obj); // object_fz slot
             } else {
                 draw_int(db, 1, displX, displY, color); // used slots
@@ -34,17 +34,7 @@ void IceTrapObjectDebugDraw(z64_disp_buf_t* db) {
     }
 
     draw_int(db, iceTraps, 20, 60, color);
-    draw_int(db, iceObjects, 20, 80, color);
+    //draw_int(db, iceObjects, 20, 80, color);
     draw_int(db, totalObj, 20, 100, color);
 
-    // kill combination
-    if (z64_game.common.input[0].raw.pad.dr && z64_game.common.input[0].raw.pad.a) {
-        z64_actor_t* actor;
-
-        actor = z64_game.actorLists[5].head; // = enemy list
-        while (actor != NULL) {
-            z64_ActorKill(actor);
-            actor = actor->next;
-        }
-    }
 }

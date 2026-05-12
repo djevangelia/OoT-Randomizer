@@ -3,6 +3,7 @@
 #include "object.h"
 #include "get_items.h"
 #include "debug.h"
+#include "debug_icetrap.h"
 
 // Macro for original get item id + if opened or not
 #define ENBOX_GET_GET_ITEM_ID(thisx) ((thisx).variable >> 5) & ((1 << 7) - 1)
