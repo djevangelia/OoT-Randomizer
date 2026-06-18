@@ -140,6 +140,7 @@ RANDO_CONTEXT:
 .include "player_cswaitputawaysoftlockfix.asm"
 .include "enge1_gtgcheckpermopen.asm"
 .include "gtggate_checkpermopen.asm"
+.include "magic_spelladdmagictarget.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
