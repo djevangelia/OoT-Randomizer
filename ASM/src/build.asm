@@ -155,6 +155,8 @@ RANDO_CONTEXT:
 .include "playerlib_remote_hookshot.asm"
 .include "player_callcheckeponawater.asm"
 .include "endns_checkydist.asm"
+.include "enbox_callloadobject.asm"
+.include "object_checkmaxobjectspace.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

@@ -1,6 +1,7 @@
 /* Addresses should be listed in order */
 z64_EquippedItemOutlineTex = 0x2000E00;
 DmaMgr_RequestAsync = 0x80000d28;
+DmaMgr_RequestSync = 0x80000df0;
 Flags_GetSwitch = 0x8002049C;
 Flags_SetSwitch = 0x800204D0;
 Flags_UnsetSwitch = 0x80020510;
@@ -35,11 +36,13 @@ Matrix_Pop = 0x800aa724;
 Matrix_Scale = 0x800aa8fc;
 Matrix_SetTranslateRotateYXZ = 0x800ab510;
 Matrix_MultVec3f = 0x800ab958;
+func_800982FC = 0x80081740;
 Audio_StopCurrentMusic = 0x800C7684;
 sprintf = 0x800CE7b4;
 Message_OpenText = 0x800DC838;
 Fault_AddHungupAndCrashImpl = 0x800AF564;
 z64_ItemIcons = 0x800F8D2C;
+gObjectTable = 0x800f8ff8;
 z64_SfxDefaultPos = 0x80104394;
 z64_SfxDefaultFreqAndVolScale = 0x801043A0;
 z64_SfxDefaultReverb = 0x801043A8;
