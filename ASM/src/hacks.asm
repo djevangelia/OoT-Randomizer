@@ -4158,3 +4158,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_en_in.asm"
 .include "hacks/z_bg_spot12_saku.asm"
 .include "hacks/z_en_ge1.asm"
+.include "hacks/z_obj_syokudai.asm"
