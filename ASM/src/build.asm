@@ -149,6 +149,7 @@ RANDO_CONTEXT:
 .include "magic_spelladdmagictarget.asm"
 .include "objsyokudai_callrotateflamecollider.asm"
 .include "play_clearcamera.asm"
+.include "player_callusedpaditem.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

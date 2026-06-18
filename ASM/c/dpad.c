@@ -56,17 +56,28 @@ void handle_dpad() {
                 z64_playsfx(0x835, (z64_xyzf_t*)0x80104394, 0x04, (float*)0x801043A0, (float*)0x801043A0, (float*)0x801043A8);
             }
         }
+    }
+}
+
+// Use item on D-pad. Called from Player_CallUseDpadItem (via Player_ProcessItemButtons)
+bool Player_UseDpadItem() {
+    pad_t pad_pressed = z64_game.common.input[0].pad_pressed;
+    pad_t pad_held = z64_ctxt.input[0].raw.pad;
+
+    if (CAN_USE_DPAD && DISPLAY_DPAD && (!pad_held.a || !CAN_DRAW_DUNGEON_INFO)) {
+        if (pad_pressed.dd && CAN_USE_OCARINA) {
+            Player_UseItem(&z64_game, &z64_link, z64_file.items[Z64_SLOT_OCARINA]);
+            return true;
+        }
 
         if (z64_file.link_age == 1) {
             if (pad_pressed.dr && CAN_USE_CHILD_TRADE) {
-                Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_CHILD_TRADE]);
+                Player_UseItem(&z64_game, &z64_link, z64_file.items[Z64_SLOT_CHILD_TRADE]);
+                return true;
             }
         }
-
-        if (pad_pressed.dd && CAN_USE_OCARINA) {
-            Player_UseItem(&z64_game,&z64_link,z64_file.items[Z64_SLOT_OCARINA]);
-        }
     }
+    return false;
 }
 
 void draw_dpad_and_menu_utilities() {

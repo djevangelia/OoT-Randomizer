@@ -64,3 +64,22 @@
     lw      a1,28(sp)           ; displaced
     bnez    v0,0x80843a04       ; if CS, run afterPutAwayFunc to exit this action
     lw      t8,1644(a2)         ; displaced; else, continue checks as usual
+
+;================================================================================
+; Check if D-pad item should be used, after B and C buttons were not pressed
+; but before checking if any button is held. If so, uses D-pad item
+;================================================================================
+; Replaces  move    a3,zero
+;           li      a1,4
+;           lhu     a0,0(t3)
+;           lhu     v0,0(v1)
+.org 0x808320b8             ; in Player_ProcessItemButtons
+    jal     Player_CallUseDpadItem
+    nop
+    bnez    t0,0x80832134       ; used item - go to end of function
+    lhu     v0,0(v1)            ; branch target for loop
+
+; Make D-pad down (0x400) cancel first person mode
+; Replaces  andi    t8,t7,0xc01f
+.org 0x80849394             ; in Player_Action_InFirstPerson
+    andi    t8,t7,0xc41f
