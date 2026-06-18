@@ -14,6 +14,8 @@ typedef void(*playsfx_t)(uint16_t sfx, z64_xyzf_t* unk_00_, int8_t unk_01_ , flo
 
 #define z64_playsfx   ((playsfx_t)      0x800C806C)
 
+#define SCENE_LAKESIDE_LABORATORY 0x38
+
 void handle_dpad() {
 
     pad_t pad_pressed = z64_game.common.input[0].pad_pressed;
@@ -39,14 +41,15 @@ void handle_dpad() {
         }
     } else if (CAN_USE_DPAD && DISPLAY_DPAD && (!pad_held.a || !CAN_DRAW_DUNGEON_INFO)) {
         if (z64_file.link_age == 0) {
-            if (pad_pressed.dl && z64_file.iron_boots) {
+            if (pad_pressed.dl && z64_file.iron_boots &&
+                (!(z64_link.state_flags_3 & PLAYER_STATE3_FLYING_WITH_HOOKSHOT) || z64_game.scene_index == SCENE_LAKESIDE_LABORATORY)) {
                 if (z64_file.equip_boots == 2) z64_file.equip_boots = 1;
                 else z64_file.equip_boots = 2;
                 z64_UpdateEquipment(&z64_game, &z64_link);
                 z64_playsfx(0x835, (z64_xyzf_t*)0x80104394, 0x04, (float*)0x801043A0, (float*)0x801043A0, (float*)0x801043A8);
             }
 
-            if (pad_pressed.dr && z64_file.hover_boots) {
+            if (pad_pressed.dr && z64_file.hover_boots && !(z64_link.state_flags_3 & PLAYER_STATE3_FLYING_WITH_HOOKSHOT)) {
                 if (z64_file.equip_boots == 3) z64_file.equip_boots = 1;
                 else z64_file.equip_boots = 3;
                 z64_UpdateEquipment(&z64_game, &z64_link);
