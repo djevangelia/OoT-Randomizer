@@ -150,6 +150,7 @@ RANDO_CONTEXT:
 .include "objsyokudai_callrotateflamecollider.asm"
 .include "play_clearcamera.asm"
 .include "player_callusedpaditem.asm"
+.include "player_trapresetmagic.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

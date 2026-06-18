@@ -25,6 +25,7 @@ Npc_TrackPoint = 0x80027854;
 CutsceneFlags_Get = 0x8005991C;
 Lights_PointGlowSetInfo = 0x80065c30;
 Math_Vec3f_Yaw = 0x80063f00;
+Magic_Reset = 0x80072548;
 z64_Gfx_SetupDL_42Opa = 0x8007E868;
 SkinMatrix_Vec3fMtxFMultXYZW = 0x8008ec20;
 Matrix_Push = 0x800aa6ec;
