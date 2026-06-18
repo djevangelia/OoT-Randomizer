@@ -143,6 +143,7 @@ RANDO_CONTEXT:
 .include "gtggate_checkpermopen.asm"
 .include "magic_spelladdmagictarget.asm"
 .include "objsyokudai_callrotateflamecollider.asm"
+.include "play_clearcamera.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
