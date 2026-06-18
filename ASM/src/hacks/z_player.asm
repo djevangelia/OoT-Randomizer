@@ -116,3 +116,13 @@
 .org 0x8084e824                 ; in Player_Action_CastMagicSpell
     jal     Player_SetFaroreMagicState
     sw      t4,3716(v0)
+
+;================================================================================
+; Remote Hookshot part 1/2. Make player keep holding bottle after drinking full
+; milk with empty bottle equipped like in Majora's Mask
+;================================================================================
+; Replaces: move    a1,s0
+;           li      a2,20
+.org 0x8084cd3c         ; in Player_Action_DrinkBottle
+    jal     Player_DrinkBottle_FullMilk
+    move    a1,s0           ; displaced

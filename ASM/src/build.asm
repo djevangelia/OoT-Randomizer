@@ -151,6 +151,8 @@ RANDO_CONTEXT:
 .include "play_clearcamera.asm"
 .include "player_callusedpaditem.asm"
 .include "player_trapresetmagic.asm"
+.include "player_remote_hookshot.asm"
+.include "playerlib_remote_hookshot.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

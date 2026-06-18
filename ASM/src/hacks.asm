@@ -4132,6 +4132,7 @@ courtyard_guards_kill:
 .include "hacks/z_game_over.asm"
 .include "hacks/ovl_en_dnt_nomal.asm"
 .include "hacks/z_player.asm"
+.include "hacks/z_player_lib.asm"
 .include "hacks/z_en_sa.asm"
 .include "hacks/z_en_in.asm"
 .include "hacks/z_bg_spot12_saku.asm"
@@ -4145,3 +4146,4 @@ courtyard_guards_kill:
 .include "hacks/z_bg_bdan_objects.asm"
 .include "hacks/fault.asm"
 .include "hacks/ovl_arms_hook.asm"
+
