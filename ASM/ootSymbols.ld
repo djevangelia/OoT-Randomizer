@@ -20,6 +20,7 @@ Flags_SetCollectible = 0x8002071C;
 Actor_GetScreenPos = 0x80022b14;
 Actor_SpawnEntry = 0x800255c4;
 Actor_SetColorFilter = 0x80027090;
+Actor_Kill = 0x80020eb4;
 CutsceneFlags_Get = 0x8005991C;
 Lights_PointGlowSetInfo = 0x80065c30;
 Math_Vec3f_Yaw = 0x80063f00;
