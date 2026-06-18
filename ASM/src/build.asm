@@ -138,6 +138,7 @@ RANDO_CONTEXT:
 .include "engo2_biggoronidleclaimcheck.asm"
 .include "kaleido_gameoverfillmagic.asm"
 .include "endntn_slingshotfix.asm"
+.include "engo2_talkstateupdate.asm"
 .include "player_laddercutscenefix.asm"
 .include "player_bunny_hover_matrix.asm"
 .include "player_hookshotcheckspawn.asm"
