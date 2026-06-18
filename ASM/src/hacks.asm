@@ -4146,4 +4146,3 @@ courtyard_guards_kill:
 .include "hacks/z_bg_bdan_objects.asm"
 .include "hacks/fault.asm"
 .include "hacks/ovl_arms_hook.asm"
-
