@@ -137,6 +137,7 @@ RANDO_CONTEXT:
 .include "player_bunny_hover_matrix.asm"
 .include "player_hookshotcheckspawn.asm"
 .include "enin_talkaftereponafix.asm"
+.include "player_cswaitputawaysoftlockfix.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
