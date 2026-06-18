@@ -2566,15 +2566,26 @@ skip_bombchu_bowling_prize_switch:
 ;==================================================================================================
 ; Add ability to control Lake Hylia's water level
 ;==================================================================================================
-.orga 0xD5B264
-    jal Check_Fill_Lake
 
-.orga 0xD5B660
-    j   Fill_Lake_Destroy
+.headersize (0x809cae60 - 0x00d5afe0)
+
+; For adult, spawn Gossip Stone and set action function depending on boss status
+; Replaces: lw      t9,40(t8)
+;           sh      a0,50(t9)
+;           b       809cb218
+;           sw      t1,340(s0)
+.org 0x809cb164     ; in BgSpot06Objects_Init
+    jal     HyliaWater_SetupWaterFunction
+    lw      t9,40(t8)   ; displaced
+    b       0x809cb218
     nop
 
-.orga 0xEE7E4C
-    jal Hit_Gossip_Stone
+.headersize (0)
+
+; If hit water Gossip Stone, set flag to change level
+; Replaces  jal     Message_StartTextbox
+.orga 0xEE7E4C      ; 0x80B6C72C in func_80A4E910
+    jal EnGs_HitGossipStone
 
 .orga 0x26C10E3
     .byte 0xFF ; Set generic grotto text ID to load from grotto ID
@@ -4160,3 +4171,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_en_ge1.asm"
 .include "hacks/z_obj_syokudai.asm"
 .include "hacks/z_play.asm"
+.include "hacks/z_map_exp.asm"
