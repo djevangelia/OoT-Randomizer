@@ -65,3 +65,76 @@ sSetupDL = 0x800f7d50;
 Player_UseItem = 0x8038c9a0; /* 0x80834000 */
 OVL_EnOkarinaTag_Action2 = 0x80a872d0;
 OVL_EnOkarinaTag_Action1 = 0x80a87088;
+
+
+/* Dump of debug stuff addresses */
+Flags_UnsetClear = 0x80020674;
+gActorOverlayTable = 0x800e8530;
+gObjectTable = 0x800f8ff8;
+
+Player_SetupIdleFromGetItem = 0x803a4a10;
+Player_ObjectDMARequest = 0x8039190c;
+sGraphStackInfo = 0x80120b98;
+StackCheck_Check = 0x8000198c;
+lldiv = 0x800d4e30;
+memcpy = 0x800d2350;
+ZeldaArena_Free = 0x80066c90;
+Object_IsLoaded = 0x80081688;
+Play_ClearCamera = 0x8009d21c;
+Player_UseItem = 0x8038C9A0;
+OnePointCutscene_Attention = 0x8006ba10;
+Fault_LogThreadContext = 0x800ae338;
+
+Player_SetupGetItem = 0x80390EF8;
+Player_DetachHeldActor = 0x80388D20;
+Player_ObjectDMARequest = 0x8039190C;
+Player_AnimPlayOnceAdjusted = 0x80388C34;
+Player_ZeroXZNormalCamera = 0x80388B78;
+Object_GetSlot = 0x80081628;
+gEntranceTable = 0x800f9c90;
+Actor_FindNearby = 0x80028158;
+Math_AsymStepToF = 0x80063acc;
+DynaPoly_GetActor = 0x80031464;
+Player_SetTurnAroundCamera = 0x8038C8F4;
+TitleCard_Clear = 0x80020e80;
+func_80837B18 = 0x8038e5b4;
+
+sEntranceIconMapIndex = 0x800f553c;
+DmaMgr_RequestSync = 0x80000df0;
+Map_Init = 0x8006c340;
+gMapData = 0x8011bf10;
+_map_grand_staticSegmentRomStart = 0x00967000;
+DmaMgr_RequestAsync = 0x80000d28;
+gMapDataTable = 0x800f72d8;
+Actor_SpawnEntry = 0x800255C4;
+Actor_SetObjectDependency = 0x80020fa4;
+Interface_ChangeHudVisibilityMode = 0x8006d8e0;
+
+SkinMatrix_Vec3fMtxFMultXYZW = 0x8008ec20;
+Matrix_SetTranslateRotateYXZ = 0x800ab510;
+Matrix_Scale = 0x800aa8fc;
+Matrix_MultVec3f = 0x800ab958;
+gIdentityMtx = 0x800fedb0;
+Math_Vec3s_ToVec3f = 0x80063ccc;
+Math3D_DefPlane = 0x800a67dc;
+Graph_Alloc = 0x800a1a2c;
+Lights_PointGlowSetInfo = 0x80065c30;
+
+Math_Vec3f_Yaw = 0x80063f00;
+
+Magic_RequestChange = 0x80072588;
+Magic_Fill = 0x80072500;
+
+Actor_GetScreenPos = 0x80022b14;
+Effect_GetByIndex = 0x8001a890;
+Math_SinS = 0x800636c4;
+Math_CosS = 0x80063684;
+EffectSsKiraKira_SpawnSmall = 0x8001c66c;
+
+gKaleidoMgrOverlayTable = 0x800fe480;
+sKaleidoAreaPtr = 0x800fe4b8;
+gKaleidoMgrCurOvl = 0x800fe4bc;
+
+Play_ClearCamera = 0x8009d21c;
+
+Player_ActionHandler_13 = 0x808390fc;

@@ -157,6 +157,7 @@ RANDO_CONTEXT:
 .include "endns_checkydist.asm"
 .include "enbox_callloadobject.asm"
 .include "object_checkmaxobjectspace.asm"
+.include "fixcombo_debug_build.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"

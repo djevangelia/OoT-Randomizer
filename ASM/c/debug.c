@@ -374,6 +374,19 @@ bool get_flag(uint8_t flagtype, uint8_t flag) {
     }
 }
 
+/*** Extra debug stuff ***/
+uint8_t gMainCount = 0; // required for lightswitch asm hack
+uint8_t gLightOn = 0; // required for lightswitch asm hack
+extern void Player_SetupGetItem(z64_game_t* play, z64_link_t* this);
+extern void Player_DetachHeldActor(z64_game_t* play, z64_link_t* this);
+extern void Player_ObjectDMARequest(z64_link_t* this, int16_t objectId);
+extern void Player_AnimPlayOnceAdjusted(z64_game_t* play, z64_link_t* this, void* anim);
+extern int32_t Player_ZeroXZNormalCamera(z64_link_t* this);
+extern void Player_SetTurnAroundCamera(z64_game_t* play, int32_t camItemType);
+extern int32_t TitleCard_Clear(z64_game_t* play, void* titleCtx);
+extern int32_t func_80837B18(z64_game_t* play, z64_link_t* this, int32_t damage);
+#define UNSET_EVENTCHKINF(flag) (z64_file.event_chk_inf[(flag) >> 4] &= ~(1 << ((flag) & 0xF)))
+
 void debug_utilities(z64_disp_buf_t* db)
 {
     // Press L to levitate
@@ -382,11 +395,194 @@ void debug_utilities(z64_disp_buf_t* db)
         z64_link.common.vel_1.y = 6.34375f;
     }
 
+    colorRGBA8_t color = { 0x11, 0x99, 0xFF, 0xff};
+    // draw_int(db, gMainCount, 10, 10, color);    // Play_ClearCamera main pointer null attempts
+    // draw_int(db, GET_EVENTCHKINF(EVENTCHKINF_4A), 10, 30, color);   // Morpha flag state
+    // draw_int(db, R_EXITED_SCENE_RIDING_HORSE, 10, 50, color);   // Epona exit state
+
+    /* Kill player */
+    //  if (z64_game.common.input[0].raw.pad.dl) {
+    //     z64_link.common.damage = 200;
+    //     z64_LinkDamage(&z64_game, &z64_link, 0, 0, 0, 0);
+    // }
+
+    /* Frozen/ice trap effect */
+    // if (z64_game.common.input[0].raw.pad.dl) {
+    //     z64_LinkDamage(&z64_game, &z64_link, 3, 0, 0, 0);
+    // }
+
+    /* Toggle exit on Epona */
+    // if (z64_game.common.input[0].raw.pad.dl) {
+    //    R_EXITED_SCENE_RIDING_HORSE ^= 1;
+    // }
+
+
+    /* Toggle Morpha/water temple blue warp flag */
+    //  if (z64_game.common.input[0].raw.pad.dl) {
+    //     if (!GET_EVENTCHKINF(EVENTCHKINF_4A)) {
+    //         SET_EVENTCHKINF(EVENTCHKINF_4A);
+    //     } else {
+    //         UNSET_EVENTCHKINF(EVENTCHKINF_4A);
+    //     }
+    // }
+
+    /* Receive Gerudo card as if regular get item */
+    //  if (z64_game.common.input[0].raw.pad.dl) {
+        // z64_link.incoming_item_id = GI_GERUDOS_CARD;
+        // z64_GiveItem(&z64_game, ITEM_GERUDO_CARD);
+        // item_row_t* giEntry = get_item_row(z64_link.incoming_item_id);
+        // Player_DetachHeldActor(&z64_game, &z64_link);
+        // Player_ObjectDMARequest(&z64_link, giEntry->object_id);
+        // Player_AnimPlayOnceAdjusted(&z64_game, &z64_link, (LinkAnimationHeader*)0x04002788); // gPlayerAnim_link_demo_get_itemB
+        // z64_link.state_flags_1 |= (1 << 10) |(1 << 11) | (1 << 29);  // 11 carrying actor
+        // Player_ZeroXZNormalCamera(&z64_link);
+        // Player_SetupGetItem(&z64_game, &z64_link);
+        // Player_SetTurnAroundCamera(&z64_game, 9);
+    // }
+
+    /* Kill all enemies */
+    //  if (z64_game.common.input[0].raw.pad.dl) {
+        // z64_actor_t* actor;
+        // actor = z64_game.actor_ctxt.actorLists[5].head; // = enemy list
+        // while (actor != NULL) {
+        //     z64_ActorKill(actor);
+        //     actor = actor->next;
+        // }
+    // }
+
+    /* Remote trigger lightswitches */
+    // if (z64_game.common.input[0].raw.pad.dl) {
+    //  gLightOn++;
+    // }
+
+    /* Receive magic like small magic jar */
+    //  if (z64_game.common.input[0].raw.pad.dl) {
+        // Magic_Fill(play);
+        // Magic_RequestChange(play, 12, 5);
+    // }
+
+    /* Reduce magic */
+    //  if (z64_game.common.input[0].raw.pad.dl) {
+        // z64_file.magic -= 12;
+    // }
+
     draw_debug_menu(db);
     draw_debug_numbers(db);
     draw_timeofday(db);
     draw_textbox_ids(db);
 }
+
+/*** Draw flameColliders for obj_syokudai ***/
+
+extern Mtx gIdentityMtx;
+extern void* Graph_Alloc(z64_gfx_t* gfxCtx, size_t size);
+extern void Math3D_DefPlane(z64_xyzf_t* va, z64_xyzf_t* vb, z64_xyzf_t* vc,
+                            float* nx, float* ny, float* nz, float* originDist);
+extern void Math_Vec3s_ToVec3f(z64_xyzf_t* dest, z64_xyz_t* src);
+void Collider_DrawPoly(z64_gfx_t* gfxCtx, z64_xyzf_t* vA, z64_xyzf_t* vB, z64_xyzf_t* vC, uint8_t r, uint8_t g, uint8_t b);
+
+void Collider_DrawCylinderImpl(z64_game_t* play, Collider* col, colorRGB8_t color1, colorRGB8_t color2) {
+    z64_gfx_t* gfxCtx = play->common.gfx;
+    ColliderCylinder* cyl = (ColliderCylinder*)col;
+    float radius = (float)cyl->dim.radius;
+    float height = (float)cyl->dim.height;
+    float yShift = (float)cyl->dim.yShift;
+    z64_xyzf_t vA;
+    z64_xyzf_t vB;
+    z64_xyzf_t vC;
+    z64_xyzf_t pos;
+    Math_Vec3s_ToVec3f(&pos, &cyl->dim.pos);
+
+    vA.x = pos.x + radius;
+    vA.y = pos.y + yShift;
+    vA.z = pos.z;
+    vB.x = pos.x - radius;
+    vB.y = pos.y + yShift;
+    vB.z = pos.z;
+    vC.x = pos.x;
+    vC.y = pos.y + yShift + height;
+    vC.z = pos.z;
+    Collider_DrawPoly(gfxCtx, &vA, &vB, &vC, color1.r, color1.g, color1.b);
+
+    vA.x = pos.x;
+    vA.y = pos.y + yShift + height;
+    vA.z = pos.z + radius;
+    vB.x = pos.x;
+    vB.y = pos.y + yShift + height;
+    vB.z = pos.z - radius;
+    vC.x = pos.x;
+    vC.y = pos.y + yShift;
+    vC.z = pos.z;
+    Collider_DrawPoly(gfxCtx, &vA, &vB, &vC, color2.r, color2.g, color2.b);
+}
+
+void Collider_DrawPoly(z64_gfx_t* gfxCtx, z64_xyzf_t* vA, z64_xyzf_t* vB, z64_xyzf_t* vC, uint8_t r, uint8_t g, uint8_t b) {
+    Vtx* vtxTbl;
+    Vtx* vtx;
+    float nx;
+    float ny;
+    float nz;
+    float originDist;
+
+    OPEN_DISPS(gfxCtx);
+
+    gSPMatrix(POLY_OPA_DISP++, &gIdentityMtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gDPSetPrimColor(POLY_OPA_DISP++, 0x00, 0xFF, r, g, b, 50);
+    gDPPipeSync(POLY_OPA_DISP++);
+    gDPSetRenderMode(POLY_OPA_DISP++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2);
+    gSPTexture(POLY_OPA_DISP++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
+    gDPPipeSync(POLY_OPA_DISP++);
+    gDPSetCombineLERP(POLY_OPA_DISP++, SHADE, 0, PRIMITIVE, 0, SHADE, 0, PRIMITIVE, 0, 0, 0, 0, COMBINED, 0, 0, 0,
+                      COMBINED);
+    gSPClearGeometryMode(POLY_OPA_DISP++, G_CULL_BOTH);
+    gSPSetGeometryMode(POLY_OPA_DISP++, G_LIGHTING);
+    gDPPipeSync(POLY_OPA_DISP++);
+
+    vtxTbl = Graph_Alloc(gfxCtx, 3 * sizeof(Vtx));
+    //ASSERT(vtxTbl != NULL, "vtx_tbl != NULL", "../z_collision_check.c", 726);
+
+    vtxTbl[0].n.ob[0] = vA->x;
+    vtxTbl[0].n.ob[1] = vA->y;
+    vtxTbl[0].n.ob[2] = vA->z;
+    vtxTbl[1].n.ob[0] = vB->x;
+    vtxTbl[1].n.ob[1] = vB->y;
+    vtxTbl[1].n.ob[2] = vB->z;
+    vtxTbl[2].n.ob[0] = vC->x;
+    vtxTbl[2].n.ob[1] = vC->y;
+    vtxTbl[2].n.ob[2] = vC->z;
+
+    Math3D_DefPlane(vA, vB, vC, &nx, &ny, &nz, &originDist);
+
+    for (vtx = vtxTbl; vtx < vtxTbl + 3; vtx++) {
+        vtx->n.flag = 0;
+        vtx->n.tc[0] = 0;
+        vtx->n.tc[1] = 0;
+        vtx->n.n[0] = (uint8_t)(int32_t)nx & 0xFF;
+        vtx->n.n[1] = (uint8_t)(int32_t)ny & 0xFF;
+        vtx->n.n[2] = (uint8_t)(int32_t)nz & 0xFF;
+        vtx->n.a = 255;
+    }
+
+    gSPVertex(POLY_OPA_DISP++, vtxTbl, 3, 0);
+    gSP1Triangle(POLY_OPA_DISP++, 0, 1, 2, 0);
+
+    CLOSE_DISPS(gfxCtx);
+}
+
+void Collider_DrawCylinderBW(z64_game_t* play, Collider* col) {
+    colorRGB8_t color1 = { 0xFE, 0xFE, 0xFE };
+    colorRGB8_t color2 = { 0x1, 0x1, 0x1 };
+    Collider_DrawCylinderImpl(play, col, color1, color2);
+}
+
+void Collider_DrawCylinderRB(z64_game_t* play, Collider* col) {
+    colorRGB8_t color1 = { 255, 50, 100 };
+    colorRGB8_t color2 = { 100, 50, 255 };
+    Collider_DrawCylinderImpl(play, col, color1, color2);
+}
+
+
+/*** Normal debug stuff ***/
 
 bool debug_menu_is_drawn() {
     return show_warp_menu;
