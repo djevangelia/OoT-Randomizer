@@ -4130,6 +4130,7 @@ courtyard_guards_kill:
 .include "hacks/ovl_en_okarina_tag.asm"
 .include "hacks/sound.asm"
 .include "hacks/z_game_over.asm"
+.include "hacks/ovl_en_dnt_nomal.asm"
 .include "hacks/z_player.asm"
 .include "hacks/z_en_sa.asm"
 .include "hacks/z_en_in.asm"

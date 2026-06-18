@@ -137,6 +137,7 @@ RANDO_CONTEXT:
 .include "message_gerudocardminimap.asm"
 .include "engo2_biggoronidleclaimcheck.asm"
 .include "kaleido_gameoverfillmagic.asm"
+.include "endntn_slingshotfix.asm"
 .include "player_laddercutscenefix.asm"
 .include "player_bunny_hover_matrix.asm"
 .include "player_hookshotcheckspawn.asm"
