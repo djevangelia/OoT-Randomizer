@@ -4173,3 +4173,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_play.asm"
 .include "hacks/z_map_exp.asm"
 .include "hacks/z_en_go2.asm"
+.include "hacks/ovl_kaleido_scope.asm"

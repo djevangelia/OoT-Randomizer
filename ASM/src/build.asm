@@ -136,6 +136,7 @@ RANDO_CONTEXT:
 .include "enkz_updatetalkingyawfix.asm"
 .include "message_gerudocardminimap.asm"
 .include "engo2_biggoronidleclaimcheck.asm"
+.include "kaleido_gameoverfillmagic.asm"
 .include "player_laddercutscenefix.asm"
 .include "player_bunny_hover_matrix.asm"
 .include "player_hookshotcheckspawn.asm"
