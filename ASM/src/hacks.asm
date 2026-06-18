@@ -2687,8 +2687,8 @@ claim_check_not_traded:
 ; Skip setting the BGS flag after turning in the claim check
 ; Replaces
 ;   sb      t8, 0x003E(v0)
-.orga 0xED6574
-    nop
+; .orga 0xED6574    --- displaced by Claim Check interface fix
+;     nop
 
 ; Change Biggoron animation if adult trade quest shuffle is on
 ; to always in pain until the eye drops are turned in.
@@ -4172,3 +4172,4 @@ DemoEffect_DrawJewel_AfterHook:
 .include "hacks/z_obj_syokudai.asm"
 .include "hacks/z_play.asm"
 .include "hacks/z_map_exp.asm"
+.include "hacks/z_en_go2.asm"

@@ -135,6 +135,7 @@ RANDO_CONTEXT:
 .include "big_poe.asm"
 .include "enkz_updatetalkingyawfix.asm"
 .include "message_gerudocardminimap.asm"
+.include "engo2_biggoronidleclaimcheck.asm"
 .include "player_laddercutscenefix.asm"
 .include "player_bunny_hover_matrix.asm"
 .include "player_hookshotcheckspawn.asm"
