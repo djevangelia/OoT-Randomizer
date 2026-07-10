@@ -297,6 +297,7 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     rom.write_int32s(0x1455818, [0x00000000, 0x00000000, 0x00000000, 0x00000000])  # Small Key
     rom.write_int32s(0x14B9CB8, [0x00000000, 0x00000000, 0x00000000, 0x00000000])  # Boss Key (Key)
     rom.write_int32s(0x14B9F20, [0x00000000, 0x00000000, 0x00000000, 0x00000000])  # Boss Key (Gem)
+    rom.write_int32s(0x19626c0, [0x00000000, 0x00000000])  # Cow nosering
 
     # Force language to be specific language base
     rom.write_byte(0x3E, 0x4A if lang.base == "jp" else 0x45)

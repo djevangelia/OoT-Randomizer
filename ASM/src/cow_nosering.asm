@@ -1,4 +1,4 @@
-; Replace the address of EnCow_OverrideLimbDraw in the call to SkelAnime_DrawFlexOpa in EnCow_OverrideLimbDraw
+; Replace the address of EnCow_OverrideLimbDraw in the call to SkelAnime_DrawFlexOpa in EnCow_Draw
 
 .headersize (0x80b77570 - 0x00EF2C90)
 
