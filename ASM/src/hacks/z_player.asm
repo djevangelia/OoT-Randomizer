@@ -197,3 +197,15 @@
     sw      t7,1644(s0)
     jal     Player_GetExplosiveHeld
     move    a0,s0
+
+;================================================================================
+; Allow use of button items that don't run normal UseItems pathway
+;================================================================================
+; Replaces: jal     Player_UseItem
+;           lw      a0,44(sp)
+.org 0x8083212c     ; Player_ProcessItemButtons
+    jal     Player_UseItemCustom
+    lw      a0,44(sp)
+
+.org 0x80853520
+    nop     ; reloc, nop Player_UseItem in Player_ProcessItemButtons

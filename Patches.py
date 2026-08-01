@@ -926,6 +926,9 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
     elif world.settings.zora_fountain == 'adult':
         rom.write_byte(rom.sym('MOVED_ADULT_KING_ZORA'), 1)
 
+    # Enable Navi bell functions
+    rom.write_byte(rom.sym('CFG_ENABLE_NAVI_BELL'), int(world.settings.enable_navi_bell))
+
     # Make all chest opening animations fast
     rom.write_byte(rom.sym('FAST_CHESTS'), int(world.settings.fast_chests))
 
@@ -1293,8 +1296,8 @@ def patch_rom(spoiler: Spoiler, world: World, rom: Rom) -> Rom:
         if world.settings.shuffle_silver_rupees != 'remove':
             rom.write_byte(rom.sym('CFG_DUNGEON_INFO_SILVER_RUPEES'), 1)
 
-        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1F
-            rom.write_byte(0x1F12190 + 15, 0x9F)
+        if world.dungeon_mq['Dodongos Cavern']: # Patch DC MQ Staircase Transition Actor to use permanent switch flag 0x1C
+            rom.write_byte(0x1F12190 + 15, 0x9C)
 
         if world.dungeon_mq['Spirit Temple']: # Patch Spirit MQ Lobby front right chest to use permanent switch flag 0x1F
             rom.write_byte(0x2b08ce4 + 13, 0x1F)

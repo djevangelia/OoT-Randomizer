@@ -1,4 +1,6 @@
 /* Addresses should be listed in order */
+_icon_item_staticSegmentRomStart = 0x007bd000;
+_item_name_staticSegmentRomStart = 0x00880000;
 z64_EquippedItemOutlineTex = 0x2000E00;
 DmaMgr_RequestAsync = 0x80000d28;
 DmaMgr_RequestSync = 0x80000df0;
@@ -24,6 +26,7 @@ Actor_SetColorFilter = 0x80027090;
 Actor_Kill = 0x80020eb4;
 Npc_TrackPoint = 0x80027854;
 BgCheck_AnyLineTest1 = 0x80030ae8;
+QuestHint_GetNaviTextId = 0x8005977c;
 CutsceneFlags_Get = 0x8005991C;
 Lights_PointGlowSetInfo = 0x80065c30;
 Math_Vec3f_Yaw = 0x80063f00;

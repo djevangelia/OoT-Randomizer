@@ -158,6 +158,7 @@ RANDO_CONTEXT:
 .include "enbox_callloadobject.asm"
 .include "object_checkmaxobjectspace.asm"
 .include "player_bomboi.asm"
+.include "kaleido_customitems.asm"
 .include "fixcombo_debug_build.asm"
 
 .align 0x10

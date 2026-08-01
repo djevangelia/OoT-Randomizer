@@ -3513,6 +3513,15 @@ class SettingInfos:
         shared         = True,
     )
 
+    enable_navi_bell = Checkbutton(
+        gui_text       = 'Navi Bell',
+        gui_tooltip    = '''\
+            Puts a call Navi Bell in the Nayru's Love slot, which can
+            be toggled by pressing L. Makes Navi available on C up on use.
+        ''',
+        shared         = True,
+    )
+
     fast_chests = Checkbutton(
         gui_text       = 'Fast Chest Cutscenes',
         gui_tooltip    = '''\
