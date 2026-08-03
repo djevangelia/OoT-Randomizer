@@ -30,6 +30,7 @@ Vanilla bugfixes:
 - Prevent removing main camera pointer by Play_ClearCamera
 - Fix adult sword equip when dying as child without sword
 - Fix for Epona spawning when entering scene on water
+- Fix for adult entering Lake Hylia from Domain swimming if low water level
 - Fix Slingshot scrub game softlock when hitting target before receiving item
 - Fix Goron Link softlock when talking for first time out of range
 - Add Y distance check to business Deku Scrub talk
