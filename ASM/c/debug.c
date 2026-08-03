@@ -3,6 +3,7 @@
 #include "item_effects.h"
 #include "actor.h"
 #include "player.h"
+#include "displaygrottoname.h"
 
 extern uint16_t current_textbox_id;
 
@@ -676,6 +677,8 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                     z64_game.scene_load_flag = 0x14;
                     z64_game.fadeout_transition = 0x02;
                     z64_file.buttonStatus[4] = 0; // Restore A alpha if in pause menu
+                    CURRENT_GROTTO_ID = 0xFF;
+                    DISPLAY_GROTTO_TIMER = 0;
                     show_warp_menu = 0;
                 }
             }
@@ -753,6 +756,8 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                             z64_file.respawn_flag = 2;
                             z64_game.scene_load_flag = 0x14;
                             z64_file.buttonStatus[4] = 0;
+                            CURRENT_GROTTO_ID = 0xFF;
+                            DISPLAY_GROTTO_TIMER = 0;
                             show_warp_menu = 0;
                         }
                     }
@@ -777,6 +782,8 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                         z64_game.scene_load_flag = 0x14;
                         z64_game.fadeout_transition = 0x02;
                         z64_file.buttonStatus[4] = 0;
+                        CURRENT_GROTTO_ID = 0xFF;
+                        DISPLAY_GROTTO_TIMER = 0;
                         show_warp_menu = 0;
                     }
                     break;
@@ -800,6 +807,8 @@ void draw_debug_menu(z64_disp_buf_t* db) {
                         z64_game.scene_load_flag = 0x14;
                         z64_game.fadeout_transition = 0x02;
                         z64_file.buttonStatus[4] = 0;
+                        CURRENT_GROTTO_ID = 0xFF;
+                        DISPLAY_GROTTO_TIMER = 0;
                         show_warp_menu = 0;
                     }
                     break;

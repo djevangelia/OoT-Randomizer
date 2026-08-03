@@ -266,6 +266,8 @@ REMOTE_HOOKSHOT_ENABLED:
 .byte 0x00
 CFG_BOMB_OI:
 .byte 0x00
+CFG_DISPLAY_GROTTO_NAMES:
+.byte 0x00
 .align 4
 
 ; These configuration values are given fixed addresses to aid auto-trackers.
