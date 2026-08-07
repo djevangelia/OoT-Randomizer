@@ -9,6 +9,7 @@ Enhancements/options:
 - Navi bell item for instant Navi on C up (enable_navi_bell)
 - Option to enable bomb OI (enable_bomb_oi)
 - Option to enable Remote Hookshot bug from MM (remote_hookshot)
+- Able to unequip swords for blank B + set swordless flag
 
 Gameplay fixes:
 - Fix Ingo talk post race having wrong textid in overworld ER
