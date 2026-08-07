@@ -140,7 +140,6 @@ EffectSsKiraKira_SpawnSmall = 0x8001c66c;
 
 gKaleidoMgrOverlayTable = 0x800fe480;
 sKaleidoAreaPtr = 0x800fe4b8;
-gKaleidoMgrCurOvl = 0x800fe4bc;
 
 Play_ClearCamera = 0x8009d21c;
 

@@ -4159,5 +4159,5 @@ courtyard_guards_kill:
 .include "hacks/ovl_arms_hook.asm"
 .include "hacks/en_box.asm"
 .include "hacks/z_scene.asm"
-.include "hacks/ovl_kaleido_scope.asm"
+
 .include "fixcombo_debug_hacks.asm"

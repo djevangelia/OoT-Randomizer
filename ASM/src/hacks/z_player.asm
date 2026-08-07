@@ -93,7 +93,6 @@
 ; Replaces  andi    t8,t7,0xc01f
 .org 0x80849394             ; in Player_Action_InFirstPerson
     andi    t8,t7,0xc41f
-.headersize(0x808301c0 - 0xbcdb70)
 
 ;================================================================================
 ; Fixes magic getting locked if frozen/electrified during spell cast, i.e. traps
