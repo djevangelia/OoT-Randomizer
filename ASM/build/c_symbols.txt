@@ -918,6 +918,7 @@ SYMBOL TABLE:
 00016bb4 g     F .text	0000002c fill_wallet_upgrade
 0000f2fc g     F .text	0000006c Get_NewFlag
 000120dc g     F .text	000000c0 draw_gi_eggs_and_medallions
+800c806c g       *ABS*	00000000 Audio_PlaySfxGeneral
 800d4e30 g       *ABS*	00000000 lldiv
 80030ae8 g       *ABS*	00000000 BgCheck_AnyLineTest1
 000455c0 g     O .data	00000004 heap_next

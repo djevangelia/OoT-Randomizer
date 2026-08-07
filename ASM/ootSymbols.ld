@@ -43,6 +43,7 @@ Matrix_SetTranslateRotateYXZ = 0x800ab510;
 Matrix_MultVec3f = 0x800ab958;
 func_800982FC = 0x80081740;
 Audio_StopCurrentMusic = 0x800C7684;
+Audio_PlaySfxGeneral = 0x800c806c;
 sprintf = 0x800CE7b4;
 Message_OpenText = 0x800DC838;
 Fault_AddHungupAndCrashImpl = 0x800AF564;

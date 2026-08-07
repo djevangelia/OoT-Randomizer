@@ -160,6 +160,7 @@ RANDO_CONTEXT:
 .include "player_bomboi.asm"
 .include "kaleido_customitems.asm"
 .include "fixcombo_debug_build.asm"
+.include "kaleido_preventemptyunequipsword.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
