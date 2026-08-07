@@ -51,6 +51,16 @@
      lw      a1,60(sp)       ; displaced (loads player)
 
 ;================================================================================
+; Prevent softlocking when pulling out Hookshot if player->actor.parent is set
+; but is not Hookshot actor
+;================================================================================
+; Replaces: jal     Player_HoldsHookshot
+;           move    a0,s0
+.org 0x80834764         ; in Player_UpdateUpperBody
+    jal     Player_UpperBodyCheckParent
+    move    a0,s0       ; displaced
+
+;================================================================================
 ; Prevent softlock if supersliding into cutscene by adding check in WaitForPutAway
 ; for specific scene + csAction not none, to change into CS action function.
 ; Which cutscenes are affected are thus specified in the function.

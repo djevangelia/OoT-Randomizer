@@ -161,6 +161,7 @@ RANDO_CONTEXT:
 .include "kaleido_customitems.asm"
 .include "fixcombo_debug_build.asm"
 .include "kaleido_preventemptyunequipsword.asm"
+.include "player_upperbodycheckparent.asm"
 
 .align 0x10
 .importobj "../build/bundle.o"
