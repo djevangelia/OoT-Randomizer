@@ -35,6 +35,7 @@ Vanilla bugfixes:
 - Fix Slingshot scrub game softlock when hitting target before receiving item
 - Fix Goron Link softlock when talking for first time out of range
 - Add Y distance check to business Deku Scrub talk
+- Fix Wolfos hurtbox not reset on taking damage/stun
 
 Minifixes:
 - Shorten crash debugger button code to first combo L+R+Z
