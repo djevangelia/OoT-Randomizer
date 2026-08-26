@@ -2,6 +2,7 @@
 
 ## New features
 * Can now generate roms that use the Japanese language for all text, including text added by the randomizer.
+* New setting `Nighttime Skulltulas in Daytime` that makes Gold Skulltulas that normally appear only at night available any time of day.
 
 ## Bug fixes
 * Fix a crash that could occur on Wii VC when starting a cutscene while climbing a ladder.
@@ -16,6 +17,7 @@
 * Fix silver rupee counter not displaying in Ganon's castle.
 * Fix silver rupee counter overlapping D-pad dungeon info menus.
 * Fix blowing up a specific bombable wall in MQ Dodongo's Cavern opening the door controlled by the silver rupees.
+* Fix a generator failure when Water Temple is MQ and `Logic Rules` are `Advanced`.
 
 # 9.1
 
